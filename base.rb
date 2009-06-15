@@ -10,5 +10,6 @@ config.gem "cucumber"
 config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com/"
 END
 run "cat tmp/test.rb >> config/environments/test.rb"
-rake "gems:install"
 run "rm tmp/test.rb"
+rake "gems:install"
+generate cucumber
