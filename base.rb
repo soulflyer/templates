@@ -24,8 +24,12 @@ rake "gems:unpack"
 
 generate :clearance
 
-file "/tmp/envtest.rb", <<-END
+host = "HOST = \"localhost:3000\""
+
+file "/tmp/env.rb", <<-END
 HOST = "localhost:3000"
 END
-run "cat tmp/envtest.rb >> config/environments/test.rb"
+run "cat #{host} >> config/environments/test.rb"
+# run "cat tmp/env.rb >> config/environments/test.rb"
+run "cat tmp/env.rb >> config/environments/development.rb"
 run "rm tmp/envtest.rb"
