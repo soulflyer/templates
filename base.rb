@@ -20,3 +20,4 @@ gem 'thoughtbot-clearance',
   :source  => 'http://gems.github.com'
   
 rake "gems:install"
+rake "gems:unpack"
