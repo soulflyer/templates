@@ -12,4 +12,4 @@ END
 run "cat tmp/test.rb >> config/environments/test.rb"
 run "rm tmp/test.rb"
 rake "gems:install"
-generate cucumber
+generate :cucumber
