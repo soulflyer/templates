@@ -1,2 +1,2 @@
 run "echo TODO > README"
-generate :base
+generate :app_layout
