@@ -21,3 +21,5 @@ gem 'thoughtbot-clearance',
   
 rake "gems:install"
 rake "gems:unpack"
+
+generate :clearance
