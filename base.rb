@@ -1,17 +1,16 @@
 run "echo TODO > README"
 generate :app_layout
-# Install the test tools
+
+# Install the test tools for the test environment only
 file "/tmp/test.rb", <<-END
 config.gem "rspec", :lib => false
 config.gem "rspec-rails", :lib => false
 config.gem "webrat"
 config.gem "cucumber"
-# config.gem "notahat-machinist", :lib => "machinist"
 config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com/"
 END
 run "cat tmp/test.rb >> config/environments/test.rb"
 run "rm tmp/test.rb"
-
 generate :cucumber
 
 # Add authentication stuff
@@ -21,15 +20,26 @@ gem 'thoughtbot-clearance',
   
 rake "gems:install"
 rake "gems:unpack"
-
 generate :clearance
 
-host = "HOST = \"localhost:3000\""
+# Add the host details to the config files for clearance
+# All the backslashes are there to get the new lines into the text echoed into the config files
+# This is to avoid creating a separate file and cating it on to the end as is done for the gem config
+# stuff above
+host = "localhost:3000"
+run "echo \\ >> config/environments/test.rb"
+run "echo HOST=\\\"#{host}\\\" >> config/environments/test.rb"
+run "echo \\ >> config/environments/development.rb"
+run "echo HOST=\\\"#{host}\\\" >> config/environments/development.rb"
+run "echo \\ >> config/environment.rb"
+run "echo DO_NOT_REPLY=\\\"donotreply@example.com\\\" >> config/environment.rb"
 
-file "/tmp/env.rb", <<-END
-HOST = "localhost:3000"
-END
-run "cat #{host} >> config/environments/test.rb"
-# run "cat tmp/env.rb >> config/environments/test.rb"
-run "cat tmp/env.rb >> config/environments/development.rb"
-run "rm tmp/envtest.rb"
+# more clearance setup
+route "map.root :controller => 'pages/1'"
+
+# Generate static pages stuff
+generate :rspec_scaffold, "page name:string permalink:string content:text"
+gem 'RedCloth', :source => "http://code.whytheluckystiff.net"
+
+rake "db:migrate"
+
