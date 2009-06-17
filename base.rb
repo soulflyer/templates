@@ -1,4 +1,5 @@
 run "echo TODO > README"
+run "rm public/index.html"
 generate :app_layout
 
 # Install the test tools for the test environment only
