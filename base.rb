@@ -36,11 +36,12 @@ run "echo \\ >> config/environment.rb"
 run "echo DO_NOT_REPLY=\\\"donotreply@example.com\\\" >> config/environment.rb"
 
 # more clearance setup
-route "map.root :controller => 'pages/1'"
+route "map.root :controller => 'pages', :id => '1'"
 
 # Generate static pages stuff
 generate :rspec_scaffold, "page name:string permalink:string content:text"
 gem 'RedCloth', :source => "http://code.whytheluckystiff.net"
+run "rm app/views/layouts/pages.html.erb"
 
 rake "db:migrate"
 
