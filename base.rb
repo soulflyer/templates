@@ -12,6 +12,7 @@ config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http:/
 END
 run "cat tmp/test.rb >> config/environments/test.rb"
 run "rm tmp/test.rb"
+rake "gems:install", :env => 'test', :sudo => true
 generate :cucumber
 
 # Add authentication stuff
