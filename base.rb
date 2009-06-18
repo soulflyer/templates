@@ -12,7 +12,7 @@ config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http:/
 END
 run "cat tmp/test.rb >> config/environments/test.rb"
 run "rm tmp/test.rb"
-rake "gems:install", :env => 'test', :sudo => true
+# rake "gems:install", :env => 'test', :sudo => true
 generate :cucumber
 
 # Add authentication stuff
@@ -20,7 +20,7 @@ gem 'thoughtbot-clearance',
   :lib     => 'clearance', 
   :source  => 'http://gems.github.com'
   
-rake "gems:install", :sudo => true
+# rake "gems:install", :sudo => true
 rake "gems:unpack"
 generate :clearance
 
