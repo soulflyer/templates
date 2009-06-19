@@ -1,1 +1,5 @@
 Rails templates
+
+base.rb
+
+Creates a basic project with semi static pages, authentication and test tools (cucumber and rspec)
