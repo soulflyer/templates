@@ -69,7 +69,7 @@ route "map.root :controller => 'pages', :id => '1'"
 # = Add paperclip for photo upload =
 # ==================================
 plugin "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
-
+generate :paperclip, "user photo"
 # =============
 # = Finish up =
 # =============
