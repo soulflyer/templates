@@ -70,8 +70,20 @@ route "map.root :controller => 'pages', :id => '1'"
 # ==================================
 plugin "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 generate :paperclip, "user photo"
+
+# ==================================================
+# = Create the notes file and add some bits too it =
+# ==================================================
+file "/doc/NOTES", <<-END
+Things that may need doing
+==========================
+Add factory girl to config/environments/cucumber.rb
+config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :version => ">=1.2.1"
+END
+
 # =============
 # = Finish up =
 # =============
 rake "db:migrate"
+rake "db:migrate", :env => 'test'
 
