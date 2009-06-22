@@ -59,6 +59,8 @@ run "echo \\ >> config/environments/test.rb"
 run "echo HOST=\\\"#{host}\\\" >> config/environments/test.rb"
 run "echo \\ >> config/environments/development.rb"
 run "echo HOST=\\\"#{host}\\\" >> config/environments/development.rb"
+run "echo \\ >> config/environments/cucumber.rb"
+run "echo HOST=\\\"#{host}\\\" >> config/environments/cucumber.rb"
 run "echo \\ >> config/environment.rb"
 run "echo DO_NOT_REPLY=\\\"donotreply@example.com\\\" >> config/environment.rb"
 
