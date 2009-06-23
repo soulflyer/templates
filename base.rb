@@ -80,8 +80,46 @@ generate :paperclip, "user photo"
 file "/doc/NOTES", <<-END
 Things that may need doing
 ==========================
-Add factory girl to config/environments/cucumber.rb
-config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :version => ">=1.2.1"
+Add index and delete to Clearance::Users
+========================================
+def index
+  @user = ::User.all
+  render :template => 'users/index'
+end
+
+def destroy
+  @user = ::User.find(params[:id])
+  @user.destroy
+  redirect_to(users_url) 
+end
+=========================================
+
+Add index.html.erb file in gem views/users
+==========================================
+<h1>Listing users</h1>
+
+<table>
+  <tr>
+    <th>EMail</th>
+		<th>Confirmed</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @user.each do |user| %>
+  <tr>
+    <td><%=h user.email %></td>
+		<td><%=h user.email_confirmed %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New user', new_user_path %>
+==========================================
 END
 
 # =============
