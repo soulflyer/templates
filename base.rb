@@ -103,14 +103,12 @@ Add index.html.erb file in gem views/users
     <th>EMail</th>
 		<th>Confirmed</th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @user.each do |user| %>
   <tr>
     <td><%=h user.email %></td>
 		<td><%=h user.email_confirmed %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
