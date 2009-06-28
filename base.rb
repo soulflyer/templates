@@ -72,7 +72,8 @@ route "map.root :controller => 'pages', :id => '1'"
 # = Add paperclip for photo upload =
 # ==================================
 plugin "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
-generate :paperclip, "user photo"
+
+# generate :paperclip, "user photo"
 
 # ==================================================
 # = Create the notes file and add some bits too it =
@@ -80,6 +81,9 @@ generate :paperclip, "user photo"
 file "/doc/NOTES", <<-END
 Things that may need doing
 ==========================
+
+generate paperclip
+
 Add index and delete to Clearance::Users
 ========================================
 def index
@@ -118,6 +122,7 @@ Add index.html.erb file in gem views/users
 
 <%= link_to 'New user', new_user_path %>
 ==========================================
+
 END
 
 # =============
